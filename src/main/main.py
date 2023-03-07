@@ -39,7 +39,8 @@ def main():
 
     # QUERY PROCESSING
     # Assume memory is able to hold positions
-    start_time = start_time = time.time()
+    start_time = time.time()
+
     position_dict = {}
     for i in range(len(dateColumn)):
 
@@ -101,7 +102,7 @@ def main():
         humidity_dict[year_month, 'Min Humidity'] = (
             min_humidity_pos, min_humidity)
 
-        end_time = time.time()
+    end_time = time.time()
 
     print(f'Time taken for query processing: {round(end_time-start_time,4)}s')
 
