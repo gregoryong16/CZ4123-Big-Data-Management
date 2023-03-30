@@ -109,7 +109,7 @@ def main():
     start_time = time.time()
 
     with open('result.csv', 'w') as f:
-        header = ['Date', 'Station', 'Metric', 'Value']
+        header = ['Date', 'Station', 'Category', 'Value']
         writer = csv.writer(f)
         writer.writerow(header)
         for key, value in temperature_dict.items():
