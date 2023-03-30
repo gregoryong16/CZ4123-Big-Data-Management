@@ -159,7 +159,7 @@ def main():
 
     start_time = time.time()
 
-    with open('result.csv', 'w') as f:
+    with open('result_' + matri_num + ".csv", 'w') as f:
         header = ['Date', 'Station', 'Category', 'Value']
         writer = csv.writer(f)
         writer.writerow(header)
