@@ -34,7 +34,7 @@ def main():
     else:
         location="Paya Lebar"
     print("Location: ",location)
-    
+
     # id,Timestamp,Station,Temperature,Humidity
     # idColumn = DiskList()
     dateColumn = DiskList()
@@ -69,9 +69,9 @@ def main():
     for i in range(len(dateColumn)):
 
         date = dateColumn[i]
-
+        
         if date[:4] in (year1, year2):  # Filter by year(2003,2013) in column store
-            # Filter by location(paya lebar) in column store
+            # Filter by location in column store
             if stationColumn[i] == location:
                 key = date[0:7]
 
@@ -80,51 +80,78 @@ def main():
 
                 position_dict[key].append(i)
 
-    # to store max and min temp of each month, eg key= (yyyy-mm,'Max Temp"), value=(pos,temp_value)
+    # to store max and min temp of each month, eg key= (yyyy-mm-dd,'Max Temp"), value= temp_value
     temperature_dict = {}
-    # to store max and min humidity of each month, eg key= (yyyy-mm,'Max Humidity") , value=(pos,humidity_value)
+    # to store max and min humidity of each month, eg key= (yyyy-mm-dd,'Max Humidity") , value= humidity_value
     humidity_dict = {}
 
     for year_month, positions in position_dict.items():
+        
+        max_temp_list=[]
+        min_temp_list=[]
         max_temperature = -1
-        max_temperature_pos = -1
         min_temperature = 101
-        min_temperature_pos = -1
         for pos in positions:
             curr_temperature_str = tempColumn[pos]
             if curr_temperature_str == 'M':
                 continue
             curr_temperature = float(curr_temperature_str)
-            if curr_temperature > max_temperature:
-                max_temperature = curr_temperature
-                max_temperature_pos = pos
-            if curr_temperature < min_temperature:
-                min_temperature = curr_temperature
-                min_temperature_pos = pos
-        temperature_dict[year_month, 'Max Temperature'] = (
-            max_temperature_pos, max_temperature)
-        temperature_dict[year_month, 'Min Temperature'] = (
-            min_temperature_pos, min_temperature)
+            if curr_temperature >= max_temperature:
+                if curr_temperature == max_temperature:
+                    max_temp_list.append(pos)
+                else:
+                    max_temperature = curr_temperature
+                    # Clear list before appending new positions
+                    max_temp_list=[]
+                    max_temp_list.append(pos)
+                    
+            if curr_temperature <= min_temperature:
+                if curr_temperature == min_temperature:
+                    min_temp_list.append(pos)
+                else:
+                    min_temperature = curr_temperature
+                    # Clear list before appending new positions
+                    min_temp_list=[]
+                    min_temp_list.append(pos)
+        
+        for i in range(len(max_temp_list)):
+            temperature_dict[dateColumn[max_temp_list[i]], 'Max Temperature'] = max_temperature
 
+        for i in range(len(min_temp_list)-1):    
+            temperature_dict[dateColumn[min_temp_list[i]], 'Min Temperature'] = min_temperature
+        
+        max_humidity_list=[]
+        min_humidity_list=[]
         max_humidity = -1
-        max_humidity_pos = -1
         min_humidity = 101
-        min_humidity_pos = -1
         for pos in positions:
             curr_humidity_str = humidColumn[pos]
             if curr_humidity_str == 'M':
                 continue
             curr_humidity = float(curr_humidity_str)
-            if curr_humidity > max_humidity:
-                max_humidity = curr_humidity
-                max_humidity_pos = pos
-            if curr_humidity < min_humidity:
-                min_humidity = curr_humidity
-                min_humidity_pos = pos
-        humidity_dict[year_month, 'Max Humidity'] = (
-            max_humidity_pos, max_humidity)
-        humidity_dict[year_month, 'Min Humidity'] = (
-            min_humidity_pos, min_humidity)
+            if curr_humidity >= max_humidity:
+                if curr_humidity == max_humidity:
+                    max_humidity_list.append(pos)
+                else:
+                    max_humidity = curr_humidity
+                    # Clear list before appending new positions
+                    max_humidity_list=[]
+                    max_humidity_list.append(pos)
+                    
+            if curr_humidity <= min_humidity:
+                if curr_humidity == min_humidity:
+                    min_humidity_list.append(pos)
+                else:
+                    min_humidity = curr_humidity
+                    # Clear list before appending new positions
+                    min_humidity_list=[]
+                    min_humidity_list.append(pos)
+
+        for i in range(len(max_humidity_list)):
+            humidity_dict[dateColumn[max_humidity_list[i]], 'Max Humidity'] = max_humidity
+        
+        for i in range(len(min_humidity_list)):
+            humidity_dict[dateColumn[min_humidity_list[i]], 'Min Humidity'] = min_humidity
 
     end_time = time.time()
 
@@ -137,9 +164,9 @@ def main():
         writer = csv.writer(f)
         writer.writerow(header)
         for key, value in temperature_dict.items():
-            writer.writerow([dateColumn[value[0]], location, key[1], value[1]])
+            writer.writerow([key[0], location, key[1], value])
         for key, value in humidity_dict.items():
-            writer.writerow([dateColumn[value[0]], location, key[1], value[1]])
+            writer.writerow([key[0], location, key[1], value])
 
     end_time = time.time()
 
