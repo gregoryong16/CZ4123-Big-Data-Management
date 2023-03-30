@@ -11,6 +11,30 @@ location = 'Paya Lebar'
 
 def main():
 
+    matri_num = input("Please input your matriculation number: \n")
+    last_num = matri_num[-2]
+
+    # Choose the correct years to look at
+    if last_num == '0' or last_num == '1':
+        year1= '201' + last_num
+        year2= '202'+last_num
+        print("Year 1:",year1)
+        print("Year 2:",year2)
+    else:
+        year1='200' + last_num
+        year2= '201'+last_num
+        print("Year 1:",year1)
+        print("Year 2:",year2)
+
+    # Choose correct location    
+    second_last_num=matri_num[-3]
+    # if num is even
+    if int(second_last_num)%2 == 0:
+        location="Changi"
+    else:
+        location="Paya Lebar"
+    print("Location: ",location)
+    
     # id,Timestamp,Station,Temperature,Humidity
     # idColumn = DiskList()
     dateColumn = DiskList()
