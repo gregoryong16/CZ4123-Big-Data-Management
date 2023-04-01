@@ -4,14 +4,9 @@ import time
 from disklist import DiskList
 
 matri_num = "U2021043D"
-year1 = '2003'
-year2 = '2013'
-location = 'Paya Lebar'
-
 
 def main():
 
-    matri_num = input("Please input your matriculation number: \n")
     last_num = matri_num[-2]
 
     # Choose the correct years to look at
@@ -117,7 +112,7 @@ def main():
         for i in range(len(max_temp_list)):
             temperature_dict[dateColumn[max_temp_list[i]], 'Max Temperature'] = max_temperature
 
-        for i in range(len(min_temp_list)-1):    
+        for i in range(len(min_temp_list)):    
             temperature_dict[dateColumn[min_temp_list[i]], 'Min Temperature'] = min_temperature
         
         max_humidity_list=[]

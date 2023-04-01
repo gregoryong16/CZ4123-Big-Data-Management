@@ -95,6 +95,7 @@ Date,Station,Category,Value
 2003-10-17,Changi,Min Temperature,23.0
 2003-11-06,Changi,Max Temperature,33.0
 2003-11-13,Changi,Max Temperature,33.0
+2003-11-01,Changi,Min Temperature,23.0
 2003-12-01,Changi,Max Temperature,32.0
 2003-12-25,Changi,Max Temperature,32.0
 2003-12-17,Changi,Min Temperature,23.0
@@ -117,6 +118,7 @@ Date,Station,Category,Value
 2013-03-12,Changi,Min Temperature,24.0
 2013-03-26,Changi,Min Temperature,24.0
 2013-04-18,Changi,Max Temperature,35.0
+2013-04-14,Changi,Min Temperature,22.0
 2013-05-06,Changi,Max Temperature,33.0
 2013-05-07,Changi,Max Temperature,33.0
 2013-05-12,Changi,Max Temperature,33.0
@@ -131,6 +133,7 @@ Date,Station,Category,Value
 2013-06-20,Changi,Max Temperature,34.0
 2013-06-21,Changi,Max Temperature,34.0
 2013-06-01,Changi,Min Temperature,23.0
+2013-06-05,Changi,Min Temperature,23.0
 2013-07-21,Changi,Max Temperature,33.0
 2013-07-22,Changi,Max Temperature,33.0
 2013-07-09,Changi,Min Temperature,23.0
@@ -156,12 +159,14 @@ Date,Station,Category,Value
 2013-10-08,Changi,Max Temperature,33.0
 2013-10-17,Changi,Max Temperature,33.0
 2013-10-18,Changi,Max Temperature,33.0
+2013-10-15,Changi,Min Temperature,21.0
 2013-11-21,Changi,Max Temperature,33.0
 2013-11-27,Changi,Max Temperature,33.0
 2013-11-05,Changi,Min Temperature,23.0
 2013-11-14,Changi,Min Temperature,23.0
 2013-11-23,Changi,Min Temperature,23.0
 2013-12-16,Changi,Max Temperature,34.0
+2013-12-18,Changi,Min Temperature,21.0
 2003-01-01,Changi,Max Humidity,100.0
 2003-01-02,Changi,Max Humidity,100.0
 2003-01-03,Changi,Max Humidity,100.0
